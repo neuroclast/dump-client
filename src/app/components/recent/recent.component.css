@@ -1,0 +1,19 @@
+.recent_dumps {
+  padding: 0;
+}
+
+.recent_dumps li {
+  color: #ddd;
+  font-size: .75em;
+  line-height: 16px;
+  list-style: none;
+  overflow: hidden;
+  padding: 0;
+  width: 100%
+}
+
+.recent_dumps span {
+  color: #999;
+  display: block;
+  padding-left: 14px;
+}

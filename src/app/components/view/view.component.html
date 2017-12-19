@@ -1,0 +1,45 @@
+<main role="main" class="container border rounded pt-3 content_area">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-10">
+      <div class="mb-2">
+        <div class="row top_info">
+          <div class="col" style="flex-grow: 0; width: 55px">
+            <div class="top_avatar"><img [src]="userAvatar" class="i_gb" title="{{dumpAuthor}}" alt="Avatar"></div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                <div class="top_info_l1" title="{{dump.title}}"><strong>{{dump.title}}</strong></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="top_info_l2">
+                  <span class="fa fa-user-circle-o" style="color: grey" title="User"></span>
+                  <span *ngIf="dump.username != ''; then user else guest"></span>
+                  <ng-template #user><a routerLink="/u/{{dumpAuthor}}">{{dumpAuthor}}</a></ng-template>
+                  <ng-template #guest>Anonymous</ng-template>
+                  <span class="fa fa-calendar pl-1" style="color: grey" title="Date Posted"></span> {{dump.dateTime | date:'MMM d, y h:mm a'}}
+                  <span class="fa fa-eye pl-1" style="color: grey" title="Views"></span> {{dump.views}}
+                  <span class="fa fa-clock-o pl-1" style="color: grey" title="Expires"></span> {{(expiration.getTime() == neverDate.getTime()) ? "Never" : (expiration | date:'MMM d, y h:mm a')}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="code_container">
+        <div id="code_header">
+          <span class="go_right">
+            <a href="/raw/N5269DKV" class="buttonsm">raw</a><a href="/dl/N5269DKV" class="buttonsm">download</a><a href="/index/N5269DKV" class="buttonsm buttonhide">clone</a><a href="/embed/N5269DKV" class="buttonsm buttonhide">embed</a><a href="/report/N5269DKV" class="buttonsm">report</a><a href="/print/N5269DKV" class="buttonsm buttonhide">print</a>
+          </span>
+          <span><a routerLink="/archive/{{dump.type}}" class="buttonsm" style="margin:0">{{globals.invertedDumpTypeMap[dump.type]}}</a></span> {{contentSize | fileSize}}
+        </div>
+        <pre class="line-numbers"><code #contentTarget></code></pre>
+      </div>
+    </div>
+    <div class="d-none d-md-block col-md-2 border border-top-0 border-right-0 border-bottom-0">
+      <app-recent></app-recent>
+    </div>
+  </div>
+</main>

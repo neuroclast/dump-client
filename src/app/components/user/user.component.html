@@ -1,0 +1,45 @@
+<main role="main" class="container border rounded pt-3 content_area">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-10">
+      <div class="mb-4">
+        <div class="top_avatar">
+          <img [src]="userAvatar" class="i_gb" title="{{user?.username}}" alt="">
+        </div>
+        <div class="top_info">
+          <div class="top_info_l1" title="{{user?.username}}"><strong>{{pageTitle}}</strong></div>
+          <div class="top_info_l2">
+            <span class="fa fa-calendar pl-1" style="color: grey" title="Date Joined"></span> {{user?.joined | date}}
+            <span class="fa fa-eye pl-1" style="color: grey" title="User's Dump Views"></span> {{user?.views}}
+            <span class="fa fa-link pl-1" style="color: grey" title="Website"></span> <a href="http://{{user?.website}}" target="_blank">{{user?.website}}</a>
+          </div>
+        </div>
+      </div>
+      <br />
+      <table class="table mt-2 table-hover table-sm" style="font-size:75%">
+        <thead class="thead-light">
+        <tr>
+          <th scope="col" class="w-50">Title</th>
+          <th scope="col">Added</th>
+          <th scope="col">Expires</th>
+          <th scope="col" *ngIf="auth.isAuthenticated()">Exposure</th>
+          <th scope="col">Views</th>
+          <th scope="col">Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let dump of dumps" (click)="onClick(dump.publicId)" style="cursor:pointer">
+          <td>{{dump.title}}</td>
+          <td>{{dump.dateTime | date}}</td>
+          <td>{{(dump.expiration == neverDate) ? "Never" : (dump.expiration | date:'MMM d, y h:mm a')}}</td>
+          <td *ngIf="auth.isAuthenticated()">{{dump.exposure.toString() == "PUBLIC" ? "Public" : dump.exposure.toString() == "UNLISTED" ? "Unlisted" : "Private" }}</td>
+          <td>{{dump.views}}</td>
+          <td>{{dump.type}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-none d-md-block col-md-2 border border-top-0 border-right-0 border-bottom-0">
+      <app-recent></app-recent>
+    </div>
+  </div>
+</main>

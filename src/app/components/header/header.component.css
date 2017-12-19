@@ -1,0 +1,44 @@
+.navbar {
+  padding: 0 1rem;
+  background-color: rgb(20, 107, 47);
+}
+
+.navbar-brand {
+  padding: 0;
+}
+
+.nav-link .btn-secondary {
+  background-color: white;
+  color: green
+}
+
+.nav-link .btn-secondary:hover {
+  background-color: #eee;
+}
+
+.nav-link {
+  padding: 0;
+}
+
+#dropdownMenuLink {
+  background-color: transparent;
+  box-shadow:  none;
+  border: 0;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.username {
+  color: white;
+}
+
+.header_icon {
+  border: 1px solid #369;
+  border-radius: 3px;
+  height: 30px;
+  width: 30px;
+  background: url(../../../assets/guest.png) no-repeat;
+  background-size: 30px;
+  margin: 0 0 0 10px;
+  display: inline-block;
+}

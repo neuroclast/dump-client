@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="/"><img src="../../assets/dump-logo.png" style="width:50px;height:50px" />dump.sh</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <div class="nav-link pr-3">
+            <a routerLink="/" class="btn btn-secondary" href="#" role="button">
+              <i class="fa fa-file-o" aria-hidden="true"></i>
+              new dump
+            </a>
+          </div>
+        </li>
+        <li class="nav-item" style="margin-top:6px">
+          <a routerLink="/archive" style="color:white">archive</a>
+        </li>
+      </ul>
+      <div class="form-inline mt-2 mt-md-0 mr-auto">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </div>
+      <div class="dropdown show pt-1">
+        <span *ngIf="profile.username; then user else anonymous"></span>
+        <ng-template #user><span class="username"><a routerLink="/u/{{profile?.username}}" href="#" style="color:white;text-decoration: :none">{{profile?.username}}</a></span></ng-template>
+        <ng-template #anonymous><span class="username">Anonymous</span></ng-template>
+
+        <a routerLink="/u/{{profile?.username ? profile.username : 'Anonymous' }}" href="#"><img [src]="avatarSrc" class="header_icon" title="My Public Profile" alt=""></a>
+
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp;</a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="#" *ngIf="!auth.isAuthenticated()" routerLink="/login">Log In</a>
+          <a class="dropdown-item" href="#" *ngIf="auth.isAuthenticated()" routerLink="/cp">My Profile</a>
+          <a class="dropdown-item" href="#" *ngIf="auth.isAuthenticated()" (click)="auth.logout()">Log out</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

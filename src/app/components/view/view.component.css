@@ -1,0 +1,102 @@
+.top_avatar {
+  height: 46px;
+  width: 46px;
+
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin: 0 10px 0 0;
+  padding: 2px;
+}
+
+.top_info {
+  color: #666;
+  font-size: .8em;
+}
+
+.i_gb {
+  background: url(../../../assets/guest.png) no-repeat;
+  background-size: 40px;
+  height: 40px;
+  width: 40px;
+}
+
+.top_info_l1 {
+  overflow: hidden;
+  line-height: 19px;
+  height: 20px;
+  text-overflow: ellipsis;
+}
+
+.top_info_l2 {
+  margin: 5px 0 0;
+  height: 23px;
+  line-height: 23px;
+  overflow: hidden;
+}
+
+.top_info_l1, .top_info_l2 {
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+}
+
+.img_line {
+  width: 16px;
+  height: 16px;
+  vertical-align: top;
+  opacity: 1;
+  margin: 4px 2px 0 9px;
+}
+
+#code_container {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin: 0 0 10px;
+}
+
+#code_header {
+  border-bottom: 1px solid #ddd;
+  font-size: .85em;
+  background: #F7F7F7;
+  text-align: left;
+  padding: 6px 8px 4px;
+  font-family: Consolas,Menlo,Monaco,"Lucida Console","Liberation Mono","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace,serif;
+}
+
+.go_right {
+  float: right;
+  text-align: right;
+}
+
+.buttonsm {
+  background-color: #ddd;
+  border-bottom: 2px solid #ccc;
+  border-left: 0;
+  border-radius: 3px;
+  border-right: 0;
+  border-top: 0;
+  color: #000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "segoe ui","trebuchet MS","Lucida Sans Unicode","Lucida Sans",Sans-Serif;
+  font-size: 12px;
+  font-weight: 400;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  text-decoration: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  padding: 0 6px;
+  opacity: .75;
+  margin: 0 0 0 8px;
+}
+
+pre {
+  margin-bottom: 0;
+}
+
+.codeView div {
+  padding: 5px;
+}
