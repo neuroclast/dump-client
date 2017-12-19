@@ -7,6 +7,7 @@ import {Observable} from "rxjs/Observable";
 import {User} from "../../objects/user";
 import {Router} from "@angular/router";
 import {ErrorHandler} from "../../utils/errorhandler";
+import {Md5} from "ts-md5/dist/md5";
 
 @Component({
   selector: 'app-controlpanel',
@@ -33,9 +34,10 @@ export class ControlpanelComponent implements OnInit {
   createForm() {
     this.cpForm = this.fb.group({
       username: {value: '', disabled: true},
-      email: '',
-      website: '',
-      avatar: null
+      email: null,
+      website: null,
+      avatar: null,
+      password: null
     });
 
     // verify authorized user
@@ -52,7 +54,8 @@ export class ControlpanelComponent implements OnInit {
             username: {value: this.profile.username, disabled: true},
             email: this.profile.email,
             website: this.profile.website,
-            avatar: null
+            avatar: null,
+            password: null
           });
 
           this.avatarSrc = `${environment.apiUrl}/users/avatar/${this.profile.username}.png`;
@@ -63,11 +66,27 @@ export class ControlpanelComponent implements OnInit {
   }
 
   private prepareSave(): any {
+    // TODO: validate password requirements
+    let password = null;
+
+    if(this.cpForm.get('password') != null) {
+      password = Md5.hashStr(this.cpForm.get('password').value);
+    }
+
     let input = new FormData();
     input.append('email', this.cpForm.get('email').value);
     input.append('website', this.cpForm.get('website').value);
     input.append('avatar', this.cpForm.get('avatar').value);
+
+    if(password != null) {
+      input.append('password', password);
+    }
+
     return input;
+  }
+
+  submitStopper(e){
+    e.preventDefault();
   }
 
   onSubmit() {
@@ -79,6 +98,7 @@ export class ControlpanelComponent implements OnInit {
         window.location.reload(true);
       },
       (err) => {
+        //TODO: error message for file size
         console.log("Failed to upload. Probably too large.");
         ErrorHandler.http(this.auth, err);
       }

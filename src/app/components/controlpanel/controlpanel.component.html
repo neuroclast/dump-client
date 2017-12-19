@@ -3,7 +3,7 @@
     <div class="col-xs-12 col-sm-12 col-md-10">
       <h5>My Profile</h5>
       <hr />
-      <form [formGroup]="cpForm"  novalidate class="form-horizontal">
+      <form [formGroup]="cpForm" (submit)="submitStopper($event)" novalidate class="form-horizontal">
         <div class="form-group row">
           <label class="col control-label" for="username">Username:</label>
           <div class="col">
@@ -23,6 +23,12 @@
           </div>
         </div>
         <div class="form-group row">
+          <label class="col control-label" for="password">Password:</label>
+          <div class="col">
+            <input type="password" formControlName="password" name="password" id="password" class="form-control" placeholder="New password"/>
+          </div>
+        </div>
+        <div class="form-group row">
           <label class="col control-label">Avatar:</label>
           <div class="col">
             <small>Should be square, max size 150x150</small><br />
@@ -35,7 +41,7 @@
         </div>
         <div class="form-group row mt-5">
           <div class="col text-center">
-            <button type="submit" [disabled]="cpForm.invalid" (click)="onSubmit()" class="btn btn-success">Submit</button> &nbsp;
+            <button type="button" [disabled]="cpForm.invalid" (click)="onSubmit()" class="btn btn-success">Submit</button> &nbsp;
             <button type="reset" (click)="revert()" [disabled]="cpForm.pristine" class="btn btn-danger">Cancel</button>
           </div>
         </div>
