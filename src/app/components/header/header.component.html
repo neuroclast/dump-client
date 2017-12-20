@@ -32,9 +32,10 @@
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp;</a>
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="#" *ngIf="!auth.isAuthenticated()" routerLink="/login">Log In</a>
-          <a class="dropdown-item" href="#" *ngIf="auth.isAuthenticated()" routerLink="/cp">My Profile</a>
-          <a class="dropdown-item" href="#" *ngIf="auth.isAuthenticated()" (click)="auth.logout()">Log out</a>
+          <a class="dropdown-item" href="#" *ngIf="!auth.isAuthenticated()" routerLink="/login"><i class="fa fa-sign-in"></i><div class="text-right" style="float:right">Log In</div></a>
+          <a class="dropdown-item" href="#" *ngIf="!auth.isAuthenticated()" routerLink="/register"><i class="fa fa-user-plus"></i><div class="text-right" style="float:right">Register</div></a>
+          <a class="dropdown-item" href="#" *ngIf="auth.isAuthenticated()" routerLink="/cp"><i class="fa fa-user"></i><div class="text-right" style="float:right">My Profile</div></a>
+          <a class="dropdown-item" href="#" *ngIf="auth.isAuthenticated()" (click)="auth.logout()"><i class="fa fa-sign-out"></i><div class="text-right" style="float:right">Log Out</div></a>
         </div>
       </div>
     </div>

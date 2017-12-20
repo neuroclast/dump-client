@@ -1,14 +1,11 @@
 <div class="container">
   <div class="row justify-content-md-center mt-5">
-    <div class="col-md-4">
+    <div class="col-md-4 p-3 border rounded bg-white">
       <div class="panel panel-login">
         <div class="panel-heading">
           <div class="row justify-content-md-center">
             <div class="col">
-              <a routerLink="/login" id="login-form-link">Login</a>
-            </div>
-            <div class="col">
-              <a routerLink="/register" class="active" id="register-form-link">Register</a>
+              <h5 style="color:#4a4a4a">Register</h5>
             </div>
           </div>
           <hr>
@@ -20,7 +17,7 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                    <input type="text" formControlName="username" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" pattern="^[a-zA-Z0-9]{4,20}$" required>
+                    <input type="text" formControlName="username" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" pattern="^[a-zA-Z0-9]{4,20}$" data-toggle="popover" data-placement="right" data-trigger="focus" title="Username" data-content="Usernames must be at least 4 characters long, and may contain only alphanumeric characters." required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -32,18 +29,27 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                    <input type="password" formControlName="password" name="password" id="password" tabindex="3" class="form-control" placeholder="Password" pattern="^.{6,250}$" required>
+                    <input type="password" formControlName="password" name="password" id="password" tabindex="3" class="form-control" placeholder="Password" pattern="^.{6,250}$" data-toggle="popover" data-placement="right" data-trigger="focus" title="Password" data-content="Passwords must be at least 6 characters long." required>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="row justify-content-md-center">
                     <div class="col-sm-6">
-                      <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                      <input type="submit" [disabled]="!registerForm.valid" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                    </div>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="row text-center">
+                    <div class="col">
+                      <a href="#" routerLink="/login" style="color:grey">Log In</a>
+                    </div>
+                    <div class="col">
+                      <a href="#" routerLink="/recover" style="color:grey">Forgot Password</a>
                     </div>
                   </div>
                 </div>
               </form>
-              {{registerForm.valid}}
             </div>
           </div>
         </div>

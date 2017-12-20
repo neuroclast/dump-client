@@ -5,6 +5,8 @@ import {User} from "../../objects/user";
 import {Route, Router} from "@angular/router";
 import {Md5} from "ts-md5/dist/md5";
 
+declare var $;
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -22,6 +24,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+
+    $(function () {
+      $('[data-toggle="popover"]').popover()
+    })
   }
 
   createForm() {
