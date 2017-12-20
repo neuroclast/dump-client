@@ -46,6 +46,16 @@ export class AuthService {
     return new Jwt(jwtString);
   }
 
+  public getSessionUser(): string {
+    let jwt = this.getSession();
+
+    if(jwt.payload && jwt.payload.username) {
+      return jwt.payload.username;
+    }
+
+    return null;
+  }
+
   public setSession(jwtString: string): void {
     let jwt: Jwt = new Jwt(jwtString);
 
