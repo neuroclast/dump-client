@@ -25,6 +25,7 @@ import {FileSizePipe} from "./pipes/content-size.pipe";
 import { FooterComponent } from './components/footer/footer.component';
 import {HttpAuth} from "./objects/httpauth";
 import { ArchiveComponent } from './components/archive/archive.component';
+import { EditComponent } from './components/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ArchiveComponent } from './components/archive/archive.component';
     RegisterComponent,
     FileSizePipe,
     FooterComponent,
-    ArchiveComponent
+    ArchiveComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

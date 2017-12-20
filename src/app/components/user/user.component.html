@@ -35,7 +35,7 @@
           <td *ngIf="auth.isAuthenticated() && auth.getSessionUser() == username">{{dump.exposure.toString() == "PUBLIC" ? "Public" : dump.exposure.toString() == "UNLISTED" ? "Unlisted" : "Private" }}</td>
           <td>{{dump.views}}</td>
           <td>{{globals.invertedDumpTypeMap[dump.type]}}</td>
-          <td *ngIf="auth.isAuthenticated() && auth.getSessionUser() == username"><a href="javascript:void(0)"><i class="fa fa-pencil"></i></a><a href="javascript:void(0)" class="ml-4" (click)="deleteDlg(dump.title, dump.publicId)"><i class="fa fa-trash"></i></a></td>
+          <td *ngIf="auth.isAuthenticated() && auth.getSessionUser() == username"><a routerLink="/edit/{{dump.publicId}}"><i class="fa fa-pencil"></i></a><a href="javascript:void(0)" class="ml-4" (click)="deleteDlg(dump.title, dump.publicId)"><i class="fa fa-trash"></i></a></td>
         </tr>
         </tbody>
       </table>

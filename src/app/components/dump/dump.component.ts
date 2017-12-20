@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {RecentComponent} from "../recent/recent.component";
 import {AuthService} from "../../services/auth.service";
 import {Globals} from "../../objects/globals";
+import {DateAdd} from "../../utils/dateadd";
 
 @Component({
   selector: 'app-dump',
@@ -84,7 +85,7 @@ export class DumpComponent implements OnInit {
     let expirationDate: Date = new Date(0);
 
     if(formModel.expiration != -1) {
-      expirationDate = this.dateAdd(new Date(), 'minute', formModel.expiration);
+      expirationDate = DateAdd.calc(new Date(), 'minute', formModel.expiration);
     }
 
     return {
@@ -102,28 +103,6 @@ export class DumpComponent implements OnInit {
   }
 
   revert() { this.ngOnChanges(); }
-
-  dateAdd(date, interval, units): Date {
-    let ret = new Date(date);
-
-    let checkRollover = () => {
-      if(ret.getDate() != date.getDate())
-        ret.setDate(0);
-      };
-
-    switch(interval.toLowerCase())  {
-      case 'year'   :  ret.setFullYear(ret.getFullYear() + units); checkRollover();  break;
-      case 'quarter':  ret.setMonth(ret.getMonth() + 3*units); checkRollover();  break;
-      case 'month'  :  ret.setMonth(ret.getMonth() + units); checkRollover();  break;
-      case 'week'   :  ret.setDate(ret.getDate() + 7*units);  break;
-      case 'day'    :  ret.setDate(ret.getDate() + units);  break;
-      case 'hour'   :  ret.setTime(ret.getTime() + units*3600000);  break;
-      case 'minute' :  ret.setTime(ret.getTime() + units*60000);  break;
-      case 'second' :  ret.setTime(ret.getTime() + units*1000);  break;
-      default       :  ret = undefined;  break;
-    }
-    return ret;
-  }
 
   ngOnChanges() {
     this.dumpForm.reset({

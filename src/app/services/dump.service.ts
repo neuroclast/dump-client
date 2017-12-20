@@ -72,4 +72,9 @@ export class DumpService {
     const postUrl = `${this.apiUrl}/add`;
     return this.http.post(postUrl, dump, {observe: 'response', responseType: 'text' as 'json'});
   }
+
+  update(dump: Dump): Observable<any> {
+    const postUrl = `${this.apiUrl}/update`;
+    return this.http.post(postUrl, dump, {observe: 'response', responseType: 'text' as 'json'});
+  }
 }
