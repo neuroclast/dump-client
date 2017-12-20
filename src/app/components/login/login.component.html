@@ -1,5 +1,12 @@
 <div class="container">
   <div class="row justify-content-md-center mt-5">
+    <div class="col">
+      <div *ngIf="error" class="alert alert-danger" id="error_box">
+        <strong>Error:</strong> {{errorText}}
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
     <div class="col-md-4 p-3 border rounded bg-white">
       <div class="panel panel-login">
         <div class="panel-heading">
@@ -17,13 +24,13 @@
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                    <input type="text" formControlName="username" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+                    <input type="text" formControlName="username" name="username" id="username" tabindex="1" class="form-control" pattern="^[a-zA-Z0-9]{4,20}$" placeholder="Username" value="" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                    <input type="password" formControlName="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                    <input type="password" formControlName="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" pattern="^.{6,250}$" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -37,7 +44,7 @@
                 <div class="form-group">
                   <div class="row justify-content-md-center">
                     <div class="col-sm-6">
-                      <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+                      <input type="submit" [disabled]="loginForm.invalid" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
                     </div>
                   </div>
                 </div>

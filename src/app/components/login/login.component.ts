@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
 
   fromRegistration: boolean;
   loginForm: FormGroup;
+  public error: boolean = false;
+  public errorText: string;
 
   constructor(
     private fb: FormBuilder,
@@ -42,6 +44,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.error = false;
+
     let formValues = this.loginForm.value;
 
     this.authService.login(formValues.username, formValues.password, formValues.remember)
@@ -53,8 +57,8 @@ export class LoginComponent implements OnInit {
         }
       },
       (err)=> {
-        // TODO: display login error
-        console.log("Invalid u/p");
+        this.errorText = "Invalid login or password!";
+        this.error = true;
       });
   }
 

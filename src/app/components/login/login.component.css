@@ -69,3 +69,7 @@
   text-decoration: underline;
   color: #666;
 }
+
+input.ng-touched.ng-invalid {
+  background-color: #ffccce;
+}
