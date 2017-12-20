@@ -60,7 +60,7 @@
   font-size: .85em;
   background: #F7F7F7;
   text-align: left;
-  padding: 6px 8px 4px;
+  padding: 8px;
   font-family: Consolas,Menlo,Monaco,"Lucida Console","Liberation Mono","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace,serif;
 }
 
@@ -69,34 +69,17 @@
   text-align: right;
 }
 
-.buttonsm {
-  background-color: #ddd;
-  border-bottom: 2px solid #ccc;
-  border-left: 0;
-  border-radius: 3px;
-  border-right: 0;
-  border-top: 0;
-  color: #000;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "segoe ui","trebuchet MS","Lucida Sans Unicode","Lucida Sans",Sans-Serif;
-  font-size: 12px;
-  font-weight: 400;
-  height: 18px;
-  line-height: 18px;
-  text-align: center;
-  text-decoration: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  padding: 0 6px;
-  opacity: .75;
-  margin: 0 0 0 8px;
-}
-
 pre {
   margin-bottom: 0;
 }
 
 .codeView div {
   padding: 5px;
+}
+
+.btn-xt-sm {
+  padding: .25rem .5rem;
+  font-size: .7rem;
+  line-height: 1;
+  border-radius: .2rem;
 }

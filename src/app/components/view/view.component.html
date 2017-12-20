@@ -31,11 +31,17 @@
       <div id="code_container">
         <div id="code_header">
           <span class="go_right">
-            <a href="/raw/N5269DKV" class="buttonsm">raw</a><a href="/dl/N5269DKV" class="buttonsm">download</a><a href="/index/N5269DKV" class="buttonsm buttonhide">clone</a><a href="/embed/N5269DKV" class="buttonsm buttonhide">embed</a><a href="/report/N5269DKV" class="buttonsm">report</a><a href="/print/N5269DKV" class="buttonsm buttonhide">print</a>
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-xt-sm btn-outline-secondary" (click)="toggleRaw()"><input type="checkbox">raw</label>
+            </div>
+            <a href="/dl/N5269DKV" class="buttonsm">download</a><a href="/index/N5269DKV" class="buttonsm buttonhide">clone</a><a href="/embed/N5269DKV" class="buttonsm buttonhide">embed</a><a href="/report/N5269DKV" class="buttonsm">report</a><a href="/print/N5269DKV" class="buttonsm buttonhide">print</a>
           </span>
-          <span><a routerLink="/archive/{{dump.type}}" class="buttonsm" style="margin:0">{{globals.invertedDumpTypeMap[dump.type]}}</a></span> {{contentSize | fileSize}}
+          <span><a routerLink="/archive/{{dump.type}}" class="btn btn-xt-sm btn-outline-secondary">{{globals.invertedDumpTypeMap[dump.type]}}</a></span> {{contentSize | fileSize}}
         </div>
-        <pre class="line-numbers"><code #contentTarget></code></pre>
+        <pre class="line-numbers" [hidden]="!showPretty"><code #contentTarget></code></pre>
+        <div>
+          <textarea [hidden]="showPretty" class="w-100 border-0 p-3" rows="15">{{dump.contents}}</textarea>
+        </div>
       </div>
     </div>
     <div class="d-none d-md-block col-md-2 border border-top-0 border-right-0 border-bottom-0">

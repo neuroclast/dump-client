@@ -1,11 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, NgZone, ChangeDetectorRef, ApplicationRef} from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { DumpService } from "../../services/dump.service";
 import { Dump } from "../../objects/dump";
-import {UserService} from "../../services/user.service";
-import {HighlightJsService} from "angular2-highlight-js";
-import {Globals} from "../../objects/globals";
-import {environment} from "../../../environments/environment";
+import { Globals} from "../../objects/globals";
+import { environment} from "../../../environments/environment";
 
 // required to call external JS directly
 declare var Prism;
@@ -23,7 +21,7 @@ export class ViewComponent implements OnInit {
   public contentSize: number;
   public neverDate: Date = new Date();
   public userAvatar: string = "../../../assets/t.gif";
-  public contentType: string;
+  public showPretty: boolean;
 
   @ViewChild("contentTarget") hlTarget: ElementRef;
 
@@ -35,6 +33,7 @@ export class ViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.showPretty = true;
     this.dumpAuthor = "Anonymous";
     this.dump = new Dump();
     this.contentSize = 0;
@@ -44,6 +43,10 @@ export class ViewComponent implements OnInit {
     this.route.params.subscribe(() => {
       this.getDump();
     });
+  }
+
+  toggleRaw() {
+    this.showPretty = !this.showPretty;
   }
 
   getDump(): void {
