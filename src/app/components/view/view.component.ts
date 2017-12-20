@@ -55,6 +55,10 @@ export class ViewComponent implements OnInit {
         (result: Dump) => {
         this.dump = result;
 
+        if(this.dump.title.length == 0) {
+          this.dump.title = "Untitled";
+        }
+
         this.contentSize = this.dump.contents.length;
         this.expiration = new Date(this.dump.expiration);
 

@@ -8,7 +8,7 @@
 <small>Recent Dumps</small>
 <ul class="recent_dumps">
   <li *ngFor="let dump of publicDumps" class="border border-right-0 border-left-0 border-bottom-0 fa fa-globe">
-    <a href="/v/{{dump.publicId}}">{{(dump.title.length > 25) ? dump.title.slice(0,22) + "..." : dump.title}}</a><br />
+    <a href="/v/{{dump.publicId}}">{{(dump.title.length > 25) ? dump.title.slice(0,22) + "..." : dump.title.length == 0 ? "Untitled" : dump.title}}</a><br />
     <span *ngIf="dump.type != 'none'" style="display: inline;float:left; border-right: solid 1px lightgrey;margin-right:5px;padding-right:5px">{{globals.invertedDumpTypeMap[dump.type]}}</span><span>{{dump.dateTime | amTimeAgo}}</span>
   </li>
 </ul>

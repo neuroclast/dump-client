@@ -8,6 +8,7 @@ import {DumpService} from "../../services/dump.service";
 import {AuthService} from "../../services/auth.service";
 import { Exposure} from "../../objects/enumerations";
 import {ErrorHandler} from "../../utils/errorhandler";
+import {Globals} from "../../objects/globals";
 
 @Component({
   selector: 'app-user',
@@ -28,10 +29,18 @@ export class UserComponent implements OnInit {
     private dumpService: DumpService,
     private route: ActivatedRoute,
     private router: Router,
-    public auth: AuthService
+    public auth: AuthService,
+    public globals: Globals
   ) { }
 
   ngOnInit() {
+    // subscribe to url changes
+    this.route.params.subscribe(() => {
+      this.loadUserPage();
+    });
+  }
+
+  loadUserPage() {
     this.username = this.route.snapshot.paramMap.get('username');
 
     if(this.username == null) {
@@ -43,7 +52,7 @@ export class UserComponent implements OnInit {
 
     this.getUser();
 
-    if(this.auth.isAuthenticated()) {
+    if(this.auth.isAuthenticated() && this.auth.getSessionUser() == this.username) {
       this.getDumps(true);
     }
     else {

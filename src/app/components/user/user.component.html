@@ -21,19 +21,19 @@
           <th scope="col" class="w-50">Title</th>
           <th scope="col">Added</th>
           <th scope="col">Expires</th>
-          <th scope="col" *ngIf="auth.isAuthenticated()">Exposure</th>
+          <th scope="col" *ngIf="auth.isAuthenticated() && auth.getSessionUser() == username">Exposure</th>
           <th scope="col">Views</th>
           <th scope="col">Type</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let dump of dumps" (click)="onClick(dump.publicId)" style="cursor:pointer">
-          <td>{{dump.title}}</td>
+          <td>{{dump.title.length == 0 ? "Untitled" : dump.title}}</td>
           <td>{{dump.dateTime | date}}</td>
           <td>{{(dump.expiration == neverDate) ? "Never" : (dump.expiration | date:'MMM d, y h:mm a')}}</td>
-          <td *ngIf="auth.isAuthenticated()">{{dump.exposure.toString() == "PUBLIC" ? "Public" : dump.exposure.toString() == "UNLISTED" ? "Unlisted" : "Private" }}</td>
+          <td *ngIf="auth.isAuthenticated() && auth.getSessionUser() == username">{{dump.exposure.toString() == "PUBLIC" ? "Public" : dump.exposure.toString() == "UNLISTED" ? "Unlisted" : "Private" }}</td>
           <td>{{dump.views}}</td>
-          <td>{{dump.type}}</td>
+          <td>{{globals.invertedDumpTypeMap[dump.type]}}</td>
         </tr>
         </tbody>
       </table>
