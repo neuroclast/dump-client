@@ -23,6 +23,13 @@ export class DumpService {
     return this.http.get<Dump>(getUrl);
   }
 
+  delete(id: string): Observable<Object> {
+    let parameters = new HttpParams();
+    parameters = parameters.set('publicId', id);
+    const deleteUrl = `${this.apiUrl}/delete`;
+    return this.http.delete(deleteUrl, {params: parameters, observe: "response"});
+  }
+
   getPage(type: string, page: number, limit: number): Observable<Dump[]> {
     const getUrl = `${this.apiUrl}/range`;
     let parameters = new HttpParams();

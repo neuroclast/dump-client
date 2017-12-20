@@ -24,16 +24,18 @@
           <th scope="col" *ngIf="auth.isAuthenticated() && auth.getSessionUser() == username">Exposure</th>
           <th scope="col">Views</th>
           <th scope="col">Type</th>
+          <th scope="col" *ngIf="auth.isAuthenticated() && auth.getSessionUser() == username">Manage</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let dump of dumps" (click)="onClick(dump.publicId)" style="cursor:pointer">
-          <td>{{dump.title.length == 0 ? "Untitled" : dump.title}}</td>
+        <tr *ngFor="let dump of dumps">
+          <td (click)="onClick(dump.publicId)" style="cursor:pointer">{{dump.title.length == 0 ? "Untitled" : dump.title}}</td>
           <td>{{dump.dateTime | date}}</td>
           <td>{{(dump.expiration == neverDate) ? "Never" : (dump.expiration | date:'MMM d, y h:mm a')}}</td>
           <td *ngIf="auth.isAuthenticated() && auth.getSessionUser() == username">{{dump.exposure.toString() == "PUBLIC" ? "Public" : dump.exposure.toString() == "UNLISTED" ? "Unlisted" : "Private" }}</td>
           <td>{{dump.views}}</td>
           <td>{{globals.invertedDumpTypeMap[dump.type]}}</td>
+          <td *ngIf="auth.isAuthenticated() && auth.getSessionUser() == username"><a href="javascript:void(0)"><i class="fa fa-pencil"></i></a><a href="javascript:void(0)" class="ml-4" (click)="deleteDlg(dump.title, dump.publicId)"><i class="fa fa-trash"></i></a></td>
         </tr>
         </tbody>
       </table>
@@ -43,3 +45,23 @@
     </div>
   </div>
 </main>
+<!-- Delete dialog -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true" style="display:none">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete Dump?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete "{{deleteTargetTitle}} with ID "{{deleteTargetId}}"?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteDump(deleteTargetId)">Delete</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

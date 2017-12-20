@@ -16,7 +16,7 @@ export class ArchiveComponent implements OnInit {
   public neverDate: number = 0;
   public olderDisabled: boolean = false;
   public newerDisabled: boolean = true;
-  private pageLimit: number = 10;
+  private pageLimit: number = 20;
   private type: string;
 
   constructor(

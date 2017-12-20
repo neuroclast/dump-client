@@ -10,6 +10,8 @@ import { Exposure} from "../../objects/enumerations";
 import {ErrorHandler} from "../../utils/errorhandler";
 import {Globals} from "../../objects/globals";
 
+declare var $;
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -23,6 +25,8 @@ export class UserComponent implements OnInit {
   public dumps: Dump[];
   public neverDate: number = new Date(0).getTime();
   public pageTitle: string = "";
+  public deleteTargetTitle: string = "";
+  public deleteTargetId: string = "";
 
   constructor(
     private userService: UserService,
@@ -53,11 +57,31 @@ export class UserComponent implements OnInit {
     this.getUser();
 
     if(this.auth.isAuthenticated() && this.auth.getSessionUser() == this.username) {
+      this.pageTitle = "My Dumps";
       this.getDumps(true);
     }
     else {
       this.getDumps(false);
     }
+  }
+
+  deleteDlg(title, publicId) {
+    this.deleteTargetTitle = title;
+    this.deleteTargetId = publicId;
+
+    $('#deleteModal').modal();
+  }
+
+  deleteDump(target) {
+    this.dumpService.delete(target)
+      .subscribe((response: Response) => {
+        if(response && response.status == 200) {
+          this.getDumps(true);
+        }
+      },
+      (err) => {
+        ErrorHandler.http(this.auth, err);
+      });
   }
 
   onClick(publicId: string) {
