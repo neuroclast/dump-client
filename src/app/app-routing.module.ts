@@ -7,11 +7,12 @@ import { ControlpanelComponent }  from "./components/controlpanel/controlpanel.c
 import { LoginComponent }         from "./components/login/login.component";
 import { RegisterComponent }      from "./components/register/register.component";
 import { ArchiveComponent }       from "./components/archive/archive.component";
-import {EditComponent} from "./components/edit/edit.component";
+import { EditComponent }          from "./components/edit/edit.component";
 
 const routes: Routes = [
   { path: '',             component: DumpComponent },
   { path: 'd',            component: DumpComponent },
+  { path: 'd/:id',        component: DumpComponent },
   { path: 'u/:username',  component: UserComponent },
   { path: 'cp',           component: ControlpanelComponent },
   { path: 'login',        component: LoginComponent },

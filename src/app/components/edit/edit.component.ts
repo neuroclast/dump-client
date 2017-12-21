@@ -31,8 +31,7 @@ export class EditComponent implements OnInit {
     public auth: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    public globals: Globals,
-    private location: Location
+    public globals: Globals
   ) { }
 
   ngOnInit() {

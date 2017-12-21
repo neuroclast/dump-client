@@ -31,10 +31,15 @@
       <div id="code_container">
         <div id="code_header">
           <span class="go_right">
-            <div class="btn-group" data-toggle="buttons">
-              <label class="btn btn-xt-sm btn-outline-secondary" (click)="toggleRaw()"><input type="checkbox">raw</label>
+            <div class="btn-toolbar" role="toolbar">
+              <div class="btn-group" role="group">
+                <button class="btn btn-xt-sm btn-outline-secondary" (click)="toggleRaw()">{{showPretty ? "raw" : "pretty"}}</button>
+                <button class="btn btn-xt-sm btn-outline-secondary" (click)="download(dump.publicId)">download</button>
+                <button class="btn btn-xt-sm btn-outline-secondary" routerLink="/d/{{dump.publicId}}">clone</button>
+                <button class="btn btn-xt-sm btn-outline-secondary" routerLink="/report/{{dump.publicId}}">report</button>
+                <button class="btn btn-xt-sm btn-outline-secondary">print</button>
+              </div>
             </div>
-            <a href="/dl/N5269DKV" class="buttonsm">download</a><a href="/index/N5269DKV" class="buttonsm buttonhide">clone</a><a href="/embed/N5269DKV" class="buttonsm buttonhide">embed</a><a href="/report/N5269DKV" class="buttonsm">report</a><a href="/print/N5269DKV" class="buttonsm buttonhide">print</a>
           </span>
           <span><a routerLink="/archive/{{dump.type}}" class="btn btn-xt-sm btn-outline-secondary">{{globals.invertedDumpTypeMap[dump.type]}}</a></span> {{contentSize | fileSize}}
         </div>

@@ -45,6 +45,10 @@ export class ViewComponent implements OnInit {
     });
   }
 
+  download(publicId: string) {
+    window.open(`${environment.apiUrl}/dumps/view/${publicId}?download=true`);
+  }
+
   toggleRaw() {
     this.showPretty = !this.showPretty;
   }

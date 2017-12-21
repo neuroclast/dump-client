@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { DumpService }            from "../../services/dump.service";
 import { FormBuilder, FormGroup, Validators }  from "@angular/forms";
 import {Dump} from "../../objects/dump";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {RecentComponent} from "../recent/recent.component";
 import {AuthService} from "../../services/auth.service";
 import {Globals} from "../../objects/globals";
@@ -28,6 +28,7 @@ export class DumpComponent implements OnInit {
     private fb: FormBuilder,
     public auth: AuthService,
     private router: Router,
+    private route: ActivatedRoute,
     public globals: Globals
   ) {
   }
@@ -35,6 +36,12 @@ export class DumpComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.types = Object.keys(this.globals.dumpTypeMap);
+
+    const id: string = this.route.snapshot.paramMap.get('id');
+
+    if(id != null ) {
+      this.getDump(id);
+    }
   }
 
   createForm() {
@@ -77,6 +84,26 @@ export class DumpComponent implements OnInit {
         this.error = true;
       }
     );
+  }
+
+  getDump(id: string): void {
+    this.dumpService.get(id)
+      .subscribe(
+        (result: Dump) => {
+          this.dumpForm.setValue({
+            contents: result.contents,
+            type: result.type,
+            expiration: -1,
+            exposure: 0,
+            title: result.title
+          });
+        },
+        (error: any) => {
+          // unable to find dump id
+          if (error['status'] == 404) {
+            console.error(`Unable to find dump ${id}`);
+          }
+        });
   }
 
   prepareDump(): Dump {
