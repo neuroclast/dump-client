@@ -7,6 +7,7 @@ import { environment} from "../../../environments/environment";
 
 // required to call external JS directly
 declare var Prism;
+declare var Clipboard;
 
 @Component({
   selector: 'app-view',
@@ -39,6 +40,12 @@ export class ViewComponent implements OnInit {
     this.contentSize = 0;
     this.neverDate = new Date(0);
 
+    new Clipboard('#copyBtn', {
+      text: function() {
+        return document.querySelector('#rawContents').innerHTML;
+      }
+    });
+
     // subscribe to url changes
     this.route.params.subscribe(() => {
       this.getDump();
@@ -47,6 +54,22 @@ export class ViewComponent implements OnInit {
 
   download(publicId: string) {
     window.open(`${environment.apiUrl}/dumps/view/${publicId}?download=true`);
+  }
+
+  print(): void {
+    let printContents, popupWin;
+    printContents = document.querySelector('#prettyCode').innerHTML;
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`
+      <html>
+        <head>
+          <title>Print from dump.sh</title>
+        </head>
+        <body onload="window.print();window.close()"><pre><code>${printContents}</code></pre></body>
+      </html>`
+    );
+    popupWin.document.close();
   }
 
   toggleRaw() {
