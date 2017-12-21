@@ -26,6 +26,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import {HttpAuth} from "./objects/httpauth";
 import { ArchiveComponent } from './components/archive/archive.component';
 import { EditComponent } from './components/edit/edit.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { EditComponent } from './components/edit/edit.component';
     FileSizePipe,
     FooterComponent,
     ArchiveComponent,
-    EditComponent
+    EditComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

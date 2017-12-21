@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild, NgZone, ChangeDetectorRef, ApplicationRef} from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import {ActivatedRoute, Router} from '@angular/router'
 import { DumpService } from "../../services/dump.service";
 import { Dump } from "../../objects/dump";
 import { Globals} from "../../objects/globals";
@@ -29,7 +29,8 @@ export class ViewComponent implements OnInit {
   constructor(
     private dumpService: DumpService,
     private route: ActivatedRoute,
-    private globals: Globals
+    private globals: Globals,
+    private router: Router
   ) {
   }
 
@@ -106,7 +107,7 @@ export class ViewComponent implements OnInit {
       (error: any) => {
         // unable to find dump id
         if (error['status'] == 404) {
-          console.error(`Unable to find dump ${id}`);
+          this.router.navigate(['/404']);
         }
       });
   }

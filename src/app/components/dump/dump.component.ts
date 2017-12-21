@@ -101,7 +101,7 @@ export class DumpComponent implements OnInit {
         (error: any) => {
           // unable to find dump id
           if (error['status'] == 404) {
-            console.error(`Unable to find dump ${id}`);
+            this.router.navigate(['/404']);
           }
         });
   }
