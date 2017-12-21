@@ -33,15 +33,16 @@
           <span class="go_right">
             <div class="btn-toolbar" role="toolbar">
               <div class="btn-group" role="group">
-                <button class="btn btn-xt-sm btn-outline-secondary" (click)="toggleRaw()">{{showPretty ? "raw" : "pretty"}}</button>
-                <button class="btn btn-xt-sm btn-outline-secondary" (click)="download(dump.publicId)">download</button>
-                <button class="btn btn-xt-sm btn-outline-secondary" routerLink="/d/{{dump.publicId}}">clone</button>
-                <button class="btn btn-xt-sm btn-outline-secondary" routerLink="/report/{{dump.publicId}}">report</button>
-                <button class="btn btn-xt-sm btn-outline-secondary">print</button>
+                <button class="btn btn-xt-sm btn-secondary"><i class="fa fa-clipboard"></i> copy</button>
+                <button class="btn btn-xt-sm btn-secondary" (click)="toggleRaw()"><i class="fa fa-{{showPretty ? 'file-text-o' : 'file-code-o'}}"></i> {{showPretty ? "raw" : "pretty"}}</button>
+                <button class="btn btn-xt-sm btn-secondary" (click)="download(dump.publicId)"><i class="fa fa-download"></i> download</button>
+                <button class="btn btn-xt-sm btn-secondary" routerLink="/d/{{dump.publicId}}"><i class="fa fa-files-o"></i> clone</button>
+                <button class="btn btn-xt-sm btn-secondary" routerLink="/report/{{dump.publicId}}"><i class="fa fa-flag-o"></i> report</button>
+                <button class="btn btn-xt-sm btn-secondary"><i class="fa fa-print"></i> print</button>
               </div>
             </div>
           </span>
-          <span><a routerLink="/archive/{{dump.type}}" class="btn btn-xt-sm btn-outline-secondary">{{globals.invertedDumpTypeMap[dump.type]}}</a></span> {{contentSize | fileSize}}
+          <span><a routerLink="/archive/{{dump.type}}" class="btn btn-xt-sm btn-secondary">{{globals.invertedDumpTypeMap[dump.type]}}</a></span> {{contentSize | fileSize}}
         </div>
         <pre class="line-numbers" [hidden]="!showPretty"><code #contentTarget></code></pre>
         <div>
