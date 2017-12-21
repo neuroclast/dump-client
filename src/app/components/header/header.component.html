@@ -23,9 +23,7 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </div>
       <div class="dropdown show pt-1">
-        <span *ngIf="profile.username; then user else anonymous"></span>
-        <ng-template #user><span class="username"><a routerLink="/u/{{profile?.username}}" href="#" style="color:white;text-decoration: :none">{{profile?.username}}</a></span></ng-template>
-        <ng-template #anonymous><span class="username">Anonymous</span></ng-template>
+        <span class="username"><a routerLink="/u/{{profile?.username ? profile.username : 'Anonymous' }}" style="color:white;text-decoration: :none">{{profile?.username ? profile.username : 'Anonymous' }}</a></span>
 
         <a routerLink="/u/{{profile?.username ? profile.username : 'Anonymous' }}" href="#"><img [src]="avatarSrc" class="header_icon" title="My Public Profile" alt=""></a>
 
