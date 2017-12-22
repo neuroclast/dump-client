@@ -29,18 +29,16 @@
         </div>
       </div>
       <div id="code_container">
-        <div id="code_header" class="d-none d-md-block ">
+        <div id="code_header">
           <span><a routerLink="/archive/{{dump.type}}" class="btn btn-xt-sm btn-secondary">{{globals.invertedDumpTypeMap[dump.type]}}</a></span> {{contentSize | fileSize}}
-          <span class="go_right">
-            <div class="btn-toolbar" role="toolbar">
-              <div class="btn-group" role="group">
-                <button id="copyBtn" class="btn btn-xt-sm btn-secondary" data-clipboard-target="#rawContents"><i class="fa fa-clipboard"></i> copy</button>
-                <button class="btn btn-xt-sm btn-secondary" (click)="toggleRaw()"><i class="fa fa-{{showPretty ? 'file-text-o' : 'file-code-o'}}"></i> {{showPretty ? "raw" : "pretty"}}</button>
-                <button class="btn btn-xt-sm btn-secondary" (click)="download(dump.publicId)"><i class="fa fa-download"></i> download</button>
-                <button class="btn btn-xt-sm btn-secondary" routerLink="/d/{{dump.publicId}}"><i class="fa fa-files-o"></i> clone</button>
-                <button class="btn btn-xt-sm btn-secondary" routerLink="/report/{{dump.publicId}}"><i class="fa fa-flag-o"></i> report</button>
-                <button class="btn btn-xt-sm btn-secondary" (click)="print()"><i class="fa fa-print"></i> print</button>
-              </div>
+          <span class="flt_right">
+            <div class="btn-group" role="group">
+              <button title="Copy" id="copyBtn" class="btn btn-xt-sm btn-secondary" data-clipboard-target="#rawContents"><i class="fa fa-clipboard"></i><span class="d-none d-md-inline"> copy</span></button>
+              <button title="Raw / Pretty" class="btn btn-xt-sm btn-secondary" (click)="toggleRaw()"><i class="fa fa-{{showPretty ? 'file-text-o' : 'file-code-o'}}"></i><span class="d-none d-md-inline">  {{showPretty ? "raw" : "pretty"}}</span></button>
+              <button title="Download" class="btn btn-xt-sm btn-secondary" (click)="download(dump.publicId)"><i class="fa fa-download"></i><span class="d-none d-md-inline">  download</span></button>
+              <button title="Clone" class="btn btn-xt-sm btn-secondary" routerLink="/d/{{dump.publicId}}"><i class="fa fa-files-o"></i><span class="d-none d-md-inline">  clone</span></button>
+              <button title="Report" class="btn btn-xt-sm btn-secondary" routerLink="/report/{{dump.publicId}}"><i class="fa fa-flag-o"></i><span class="d-none d-md-inline">  report</span></button>
+              <button title="Print" class="btn btn-xt-sm btn-secondary" (click)="print()"><i class="fa fa-print"></i><span class="d-none d-md-inline">  print</span></button>
             </div>
           </span>
         </div>
