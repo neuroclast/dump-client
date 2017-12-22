@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {Dump} from "../../objects/dump";
 import {DumpService} from "../../services/dump.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Globals} from "../../objects/globals";
+import {Globals} from "../../globals";
 
+
+/**
+ * Archive page handler
+ */
 @Component({
   selector: 'app-archive',
   templateUrl: './archive.component.html',

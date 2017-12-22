@@ -2,12 +2,13 @@ import {Component, ElementRef, OnInit, ViewChild, NgZone, ChangeDetectorRef, App
 import {ActivatedRoute, Router} from '@angular/router'
 import { DumpService } from "../../services/dump.service";
 import { Dump } from "../../objects/dump";
-import { Globals} from "../../objects/globals";
+import { Globals} from "../../globals";
 import { environment} from "../../../environments/environment";
 
 // required to call external JS directly
 declare var Prism;
 declare var Clipboard;
+declare var $;
 
 @Component({
   selector: 'app-view',
@@ -78,37 +79,42 @@ export class ViewComponent implements OnInit {
   }
 
   getDump(): void {
+    $('#loadingModal').modal("show");
+
     this.dumpAuthor = "Anonymous";
 
     const id: string = this.route.snapshot.paramMap.get('id');
+
     this.dumpService.get(id)
       .subscribe(
         (result: Dump) => {
-        this.dump = result;
+          this.dump = result;
 
-        if(this.dump.title.length == 0) {
-          this.dump.title = "Untitled";
-        }
+          if (this.dump.title.length == 0) {
+            this.dump.title = "Untitled";
+          }
 
-        this.contentSize = this.dump.contents.length;
-        this.expiration = new Date(this.dump.expiration);
+          this.contentSize = this.dump.contents.length;
+          this.expiration = new Date(this.dump.expiration);
 
-        this.hlTarget.nativeElement.innerText = this.dump.contents;
+          this.hlTarget.nativeElement.innerText = this.dump.contents;
 
-        Prism.highlightElement(this.hlTarget.nativeElement, this.dump.type);
+          Prism.highlightElement(this.hlTarget.nativeElement, this.dump.type);
 
-        // find author username
-        if(this.dump.username)
-        {
+          // find author username
+          if (this.dump.username) {
             this.dumpAuthor = this.dump.username;
             this.userAvatar = `${environment.apiUrl}/users/avatar/${this.dumpAuthor}.png`;
-        }
-      },
-      (error: any) => {
-        // unable to find dump id
-        if (error['status'] == 404) {
-          this.router.navigate(['/404']);
-        }
-      });
+          }
+        },
+        (error: any) => {
+          // unable to find dump id
+          if (error['status'] == 404) {
+            this.router.navigate(['/404']);
+          }
+        },
+        ()=>{
+          $('#loadingModal').modal("hide");
+        });
   }
 }

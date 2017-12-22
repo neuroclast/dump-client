@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {Md5} from "ts-md5/dist/md5";
 import {Observable} from "rxjs/Observable";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {Globals} from "../objects/globals";
+import {Globals} from "../globals";
 import {JWTJson} from "../objects/jwt-json";
 import {Subject} from "rxjs/Subject";
 import {Jwt} from "../objects/jwt";

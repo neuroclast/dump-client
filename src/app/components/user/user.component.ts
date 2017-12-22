@@ -6,9 +6,8 @@ import {User} from "../../objects/user";
 import {environment} from "../../../environments/environment";
 import {DumpService} from "../../services/dump.service";
 import {AuthService} from "../../services/auth.service";
-import { Exposure} from "../../objects/enumerations";
 import {ErrorHandler} from "../../utils/errorhandler";
-import {Globals} from "../../objects/globals";
+import {Globals} from "../../globals";
 
 declare var $;
 

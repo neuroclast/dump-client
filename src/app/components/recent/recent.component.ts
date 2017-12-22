@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DumpService} from "../../services/dump.service";
 import {Dump} from "../../objects/dump";
 import {AuthService} from "../../services/auth.service";
-import {Globals} from "../../objects/globals";
+import {Globals} from "../../globals";
 import {ErrorHandler} from "../../utils/errorhandler";
 
 @Component({

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Globals} from "../objects/globals";
+import {Globals} from "../globals";
 import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {User} from "../objects/user";

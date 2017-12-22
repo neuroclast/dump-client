@@ -3,13 +3,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DumpService} from "../../services/dump.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
-import {Globals} from "../../objects/globals";
+import {Globals} from "../../globals";
 import {Dump} from "../../objects/dump";
-import {environment} from "../../../environments/environment";
-import {Location} from '@angular/common';
-import {Exposure} from "../../objects/enumerations";
 import {DateAdd} from "../../utils/dateadd";
-import {errorHandler} from "@angular/platform-browser/src/browser";
 import {ErrorHandler} from "../../utils/errorhandler";
 
 @Component({

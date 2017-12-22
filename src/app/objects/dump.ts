@@ -1,4 +1,8 @@
-import { Exposure } from "./enumerations";
+export enum Exposure {
+  Public,
+  Unlisted,
+  Private
+}
 
 export class Dump {
   id: number;

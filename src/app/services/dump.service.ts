@@ -4,7 +4,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from "rxjs/Observable";
 
 import { Dump } from "../objects/dump";
-import {Globals} from "../objects/globals";
+import {Globals} from "../globals";
 import {AuthService} from "./auth.service";
 import {environment} from "../../environments/environment";
 

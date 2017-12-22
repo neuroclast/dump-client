@@ -12,21 +12,21 @@ import { UserComponent } from './components/user/user.component';
 import { DumpService } from "./services/dump.service";
 import { ViewComponent } from './components/view/view.component';
 import { RecentComponent } from './components/recent/recent.component';
-import {Globals} from "./objects/globals";
+import {Globals} from "./globals";
 import {AuthService} from "./services/auth.service";
 import { ControlpanelComponent } from './components/controlpanel/controlpanel.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import {UserService} from "./services/user.service";
 
-import { HighlightJsService } from 'angular2-highlight-js';
 import {MomentModule} from "angular2-moment";
 import {FileSizePipe} from "./pipes/content-size.pipe";
 import { FooterComponent } from './components/footer/footer.component';
-import {HttpAuth} from "./objects/httpauth";
+import {HttpAuth} from "./interceptors/httpauth";
 import { ArchiveComponent } from './components/archive/archive.component';
 import { EditComponent } from './components/edit/edit.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,8 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     FooterComponent,
     ArchiveComponent,
     EditComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +59,6 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     Globals,
     AuthService,
     UserService,
-    HighlightJsService
   ],
   bootstrap: [AppComponent]
 })

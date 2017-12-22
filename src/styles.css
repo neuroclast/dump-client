@@ -10,3 +10,7 @@ body {
   background-color: #FFF;
   min-width: 360px;
 }
+
+.modal-open {
+  overflow: scroll;
+}

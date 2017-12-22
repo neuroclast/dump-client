@@ -5,8 +5,10 @@ import {Dump} from "../../objects/dump";
 import {ActivatedRoute, Router} from "@angular/router";
 import {RecentComponent} from "../recent/recent.component";
 import {AuthService} from "../../services/auth.service";
-import {Globals} from "../../objects/globals";
+import {Globals} from "../../globals";
 import {DateAdd} from "../../utils/dateadd";
+
+declare var $;
 
 @Component({
   selector: 'app-dump',
@@ -87,6 +89,8 @@ export class DumpComponent implements OnInit {
   }
 
   getDump(id: string): void {
+    $('#loadingModal').modal("show");
+
     this.dumpService.get(id)
       .subscribe(
         (result: Dump) => {
@@ -103,6 +107,9 @@ export class DumpComponent implements OnInit {
           if (error['status'] == 404) {
             this.router.navigate(['/404']);
           }
+        },
+        () => {
+          $('#loadingModal').modal("hide");
         });
   }
 
