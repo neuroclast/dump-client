@@ -83,3 +83,7 @@ pre {
   line-height: 1;
   border-radius: .2rem;
 }
+
+#rawContents {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}

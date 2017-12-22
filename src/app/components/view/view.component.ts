@@ -41,6 +41,7 @@ export class ViewComponent implements OnInit {
     this.dump = new Dump();
     this.contentSize = 0;
     this.neverDate = new Date(0);
+    this.dump.contents = "Please wait, dump is loading...";
 
     new Clipboard('#copyBtn', {
       text: function() {

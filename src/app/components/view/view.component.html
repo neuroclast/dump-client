@@ -29,7 +29,8 @@
         </div>
       </div>
       <div id="code_container">
-        <div id="code_header">
+        <div id="code_header" class="d-none d-md-block ">
+          <span><a routerLink="/archive/{{dump.type}}" class="btn btn-xt-sm btn-secondary">{{globals.invertedDumpTypeMap[dump.type]}}</a></span> {{contentSize | fileSize}}
           <span class="go_right">
             <div class="btn-toolbar" role="toolbar">
               <div class="btn-group" role="group">
@@ -42,9 +43,8 @@
               </div>
             </div>
           </span>
-          <span><a routerLink="/archive/{{dump.type}}" class="btn btn-xt-sm btn-secondary">{{globals.invertedDumpTypeMap[dump.type]}}</a></span> {{contentSize | fileSize}}
         </div>
-        <pre class="line-numbers" [hidden]="!showPretty" id="prettyCode"><code #contentTarget></code></pre>
+        <pre class="line-numbers" [hidden]="!showPretty" id="prettyCode"><code #contentTarget>Dump loading, please wait...</code></pre>
         <div>
           <textarea id="rawContents" [hidden]="showPretty" class="w-100 border-0 p-3" rows="15">{{dump.contents}}</textarea>
         </div>
