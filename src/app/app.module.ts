@@ -23,7 +23,7 @@ import {MomentModule} from "angular2-moment";
 import {FileSizePipe} from "./pipes/content-size.pipe";
 import { FooterComponent } from './components/footer/footer.component';
 import {HttpAuth} from "./interceptors/httpauth";
-import { ArchiveComponent } from './components/archive/archive.component';
+import { SearchComponent } from './components/search/search.component';
 import { EditComponent } from './components/edit/edit.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { LoadingComponent } from './components/loading/loading.component';
@@ -41,7 +41,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     RegisterComponent,
     FileSizePipe,
     FooterComponent,
-    ArchiveComponent,
+    SearchComponent,
     EditComponent,
     NotfoundComponent,
     LoadingComponent

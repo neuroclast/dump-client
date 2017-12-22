@@ -30,7 +30,7 @@
       </div>
       <div id="code_container">
         <div id="code_header">
-          <span><a routerLink="/archive/{{dump.type}}" class="btn btn-xt-sm btn-secondary">{{globals.invertedDumpTypeMap[dump.type]}}</a></span> {{contentSize | fileSize}}
+          <span><a routerLink="/search/{{dump.type}}" class="btn btn-xt-sm btn-secondary">{{globals.invertedDumpTypeMap[dump.type]}}</a></span> {{contentSize | fileSize}}
           <span class="flt_right">
             <div class="btn-group" role="group">
               <button title="Copy" id="copyBtn" class="btn btn-xt-sm btn-secondary" data-clipboard-target="#rawContents"><i class="fa fa-clipboard"></i><span class="d-none d-md-inline"> copy</span></button>

@@ -30,8 +30,8 @@ export class DumpService {
     return this.http.delete(deleteUrl, {params: parameters, observe: "response"});
   }
 
-  getPage(type: string, page: number, limit: number): Observable<Dump[]> {
-    const getUrl = `${this.apiUrl}/range`;
+  getSearchPage(type: string, page: number, limit: number, title: string, contents: string): Observable<Dump[]> {
+    const getUrl = `${this.apiUrl}/search`;
     let parameters = new HttpParams();
 
     if(type != null) {
@@ -40,6 +40,15 @@ export class DumpService {
 
     parameters = parameters.set('page', page.toString());
     parameters = parameters.set('limit', limit.toString());
+
+    if(title != null && title.length > 0) {
+      parameters = parameters.set('title', title);
+    }
+
+    if(contents != null && contents.length > 0) {
+      parameters = parameters.set('contents', contents);
+    }
+
     return this.http.get<Dump[]>(getUrl, {params: parameters});
   }
 

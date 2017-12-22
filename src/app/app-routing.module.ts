@@ -6,7 +6,7 @@ import { ViewComponent }          from "./components/view/view.component";
 import { ControlpanelComponent }  from "./components/controlpanel/controlpanel.component";
 import { LoginComponent }         from "./components/login/login.component";
 import { RegisterComponent }      from "./components/register/register.component";
-import { ArchiveComponent }       from "./components/archive/archive.component";
+import { SearchComponent }       from "./components/search/search.component";
 import { EditComponent }          from "./components/edit/edit.component";
 import {NotfoundComponent} from "./components/notfound/notfound.component";
 
@@ -18,8 +18,8 @@ const routes: Routes = [
   { path: 'cp',           component: ControlpanelComponent },
   { path: 'login',        component: LoginComponent },
   { path: 'register',     component: RegisterComponent },
-  { path: 'archive/:type',component: ArchiveComponent },
-  { path: 'archive',      component: ArchiveComponent },
+  { path: 'search/:type', component: SearchComponent },
+  { path: 'search',       component: SearchComponent },
   { path: 'edit/:id',     component: EditComponent },
   { path: '404',          component: NotfoundComponent },
   { path: 'v/:id',        component: ViewComponent },

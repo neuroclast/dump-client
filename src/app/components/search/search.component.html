@@ -2,8 +2,24 @@
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-10">
       <div class="h5">
-        Dump Archive
+        Dump Search
       </div>
+      <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-row">
+          <div class="col">
+            <input type="text" class="form-control" formControlName="title" placeholder="Title contains" (ngModelChange)="changeSub.next($event)">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" formControlName="contents" placeholder="Content contains" (ngModelChange)="changeSub.next($event)">
+          </div>
+          <div class="col">
+            <select formControlName="type" id="type" class="form-control" (change)="onSubmit()">
+              <option value="any">Type: Any</option>
+              <option *ngFor="let type of types" value="{{globals.dumpTypeMap[type]}}">{{type}}</option>
+            </select>
+          </div>
+        </div>
+      </form>
       <table class="table mt-2 table-hover table-sm" style="font-size:75%">
         <thead class="thead-light">
         <tr>
