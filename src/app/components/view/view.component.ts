@@ -45,7 +45,7 @@ export class ViewComponent implements OnInit {
 
     new Clipboard('#copyBtn', {
       text: function() {
-        return document.querySelector('#rawContents').innerHTML;
+        return document.querySelector('#rawContents').textContent;
       }
     });
 
