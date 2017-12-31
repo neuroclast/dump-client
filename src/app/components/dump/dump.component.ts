@@ -7,8 +7,10 @@ import {RecentComponent} from "../recent/recent.component";
 import {AuthService} from "../../services/auth.service";
 import {Globals} from "../../globals";
 import {DateAdd} from "../../utils/dateadd";
+import {Subject} from "rxjs/Subject";
 
 declare var $;
+declare var hljs;
 
 @Component({
   selector: 'app-dump',
@@ -21,6 +23,8 @@ export class DumpComponent implements OnInit {
   error: boolean;
   errorText: string;
   private types: any;
+  changeSub: any = new Subject<string>();
+  private checkLang: boolean = true;
 
   @ViewChild(RecentComponent)
   private recent: RecentComponent;
@@ -44,16 +48,38 @@ export class DumpComponent implements OnInit {
     if(id != null ) {
       this.getDump(id);
     }
+    else {
+      this.changeSub
+        .debounceTime(1000)
+        .distinctUntilChanged()
+        .subscribe(() => {
+          this.checkLanguage();
+        });
+    }
+  }
+
+  checkLanguage() {
+    if(!this.checkLang) return;
+
+    let hljsObj = hljs.highlightAuto(this.dumpForm.value.contents);
+    this.dumpForm.patchValue( {
+      type: hljsObj.language
+    });
   }
 
   createForm() {
     this.dumpForm = this.fb.group({
       contents: ['', Validators.compose([Validators.required, Validators.minLength(1)])],
-      type: 'none',
+      type: 'nohighlight',
       expiration: -1,
       exposure: 0,
       title: ['', Validators.maxLength(251)]
     });
+  }
+
+  cancelCheck() {
+    this.checkLang = false;
+    console.log("Language update stopped.");
   }
 
   onSubmit() {

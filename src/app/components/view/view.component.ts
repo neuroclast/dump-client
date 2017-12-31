@@ -6,7 +6,7 @@ import { Globals} from "../../globals";
 import { environment} from "../../../environments/environment";
 
 // required to call external JS directly
-declare var Prism;
+declare var hljs;
 declare var Clipboard;
 declare var $;
 
@@ -100,7 +100,16 @@ export class ViewComponent implements OnInit {
 
           this.hlTarget.nativeElement.innerText = this.dump.contents;
 
-          Prism.highlightElement(this.hlTarget.nativeElement, this.dump.type);
+          let numLines = (this.dump.contents.match(/\n/g) || []).length;
+
+          for(let i = 1; i <= numLines + 1; i++) {
+            document.querySelector('.line-numbers').innerHTML += `${i}<br />`;
+          }
+
+          hljs.configure({
+            language: this.dump.type
+          });
+          hljs.highlightBlock(this.hlTarget.nativeElement);
 
           // find author username
           if (this.dump.username) {

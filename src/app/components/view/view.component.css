@@ -87,3 +87,28 @@ pre {
 #rawContents {
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 }
+
+pre code {
+  padding: 0.5em;
+  color: #4d505b;
+  background: #fafafa;
+  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+
+.line-numbers {
+  font-size: 90%;
+  padding: 0.5em;
+  color: #4d505b;
+  background: #fafafa;
+  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  float: left;
+  border-right: solid 1px #ededed;
+}
+
+.hljs-none {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #383a42;
+  background: #fafafa;
+}

@@ -42,8 +42,9 @@
             </div>
           </span>
         </div>
-        <pre class="line-numbers" [hidden]="!showPretty" id="prettyCode"><code #contentTarget>Dump loading, please wait...</code></pre>
+        <div [hidden]="!showPretty" class="line-numbers text-right"></div>
         <div>
+          <pre [hidden]="!showPretty" id="prettyCode"><code #contentTarget class="hljs-none">Dump loading, please wait...</code></pre>
           <textarea id="rawContents" [hidden]="showPretty" class="w-100 border-0 p-3" rows="15">{{dump.contents}}</textarea>
         </div>
       </div>
